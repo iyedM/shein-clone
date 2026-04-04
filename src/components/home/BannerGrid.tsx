@@ -1,18 +1,21 @@
 export function BannerGrid() {
-  const cards = ["Best-sellers", "Maison cosy", "Livraison rapide"];
+  const cards = [
+    { title: "Best-sellers", emoji: "⭐", color: "from-[#111111] to-[#353535]" },
+    { title: "Collections tendance", emoji: "✨", color: "from-[#E8393A] to-[#ff6b6b]" },
+    { title: "Livraison rapide", emoji: "⚡", color: "from-[#FF9800] to-[#FFB74D]" }
+  ];
 
   return (
-    <section className="mx-auto mt-6 max-w-7xl px-3 md:px-4">
-      <div className="grid gap-3 md:grid-cols-3">
-        {cards.map((card, index) => (
+    <section className="mx-auto mt-8 max-w-7xl px-3 md:px-4">
+      <div className="grid gap-4 md:grid-cols-3">
+        {cards.map((card) => (
           <article
-            key={card}
-            className={`min-h-28 p-4 text-white transition hover:brightness-110 ${
-              index === 0 ? "bg-[#111111]" : index === 1 ? "bg-[#2b2b2b]" : "bg-[#3d3d3d]"
-            }`}
+            key={card.title}
+            className={`min-h-32 p-6 text-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br ${card.color} cursor-pointer`}
           >
-            <h3 className="text-lg font-black">{card}</h3>
-            <p className="mt-1 text-xs text-white/80">Offres exclusives à durée limitée</p>
+            <div className="text-3xl mb-2">{card.emoji}</div>
+            <h3 className="text-xl font-black">{card.title}</h3>
+            <p className="mt-2 text-sm font-medium text-white/90">Offres exclusives à durée limitée</p>
           </article>
         ))}
       </div>

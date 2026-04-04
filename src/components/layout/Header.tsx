@@ -34,7 +34,7 @@ export function Header() {
   );
 
   return (
-    <header className={`sticky z-[70] w-full border-b border-[#e8e8e8] transition-all ${sticky ? "top-0 bg-white shadow-sm" : "top-0 bg-white/95"}`}>
+    <header className={`sticky z-[70] w-full transition-all ${sticky ? "top-0 bg-white shadow-lg" : "top-0 bg-gradient-to-b from-white to-white/98 shadow-md"}`}>
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-3 px-3 md:px-4">
         <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
           <SheetTrigger asChild>

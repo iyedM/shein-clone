@@ -7,7 +7,7 @@ type ProductGridProps = {
 
 export function ProductGrid({ products }: ProductGridProps) {
   return (
-    <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+    <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 bg-white p-4 rounded-lg">
       {products.map((product) => (
         <ProductCard key={product.id} product={product} />
       ))}

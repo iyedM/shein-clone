@@ -18,26 +18,26 @@ export function HeroBanner() {
   const active = heroBanners[index];
 
   return (
-    <section className="mx-auto mt-3 grid max-w-7xl gap-3 px-3 md:grid-cols-3 md:px-4">
+    <section className="mx-auto mt-4 grid max-w-7xl gap-4 px-3 md:grid-cols-3 md:px-4">
       <AnimatePresence mode="wait">
         <motion.div
           key={active.id}
           initial={{ opacity: 0.5 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0.3 }}
-          className={`relative col-span-2 min-h-64 overflow-hidden bg-gradient-to-br ${active.gradient} p-6 text-white`}
+          className={`relative col-span-2 min-h-72 overflow-hidden bg-gradient-to-br ${active.gradient} p-8 text-white rounded-xl shadow-lg`}
         >
-          <motion.div initial={{ y: 16, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.4 }}>
-            <p className="text-xs uppercase tracking-widest">Promo SHEIN</p>
-            <h1 className="mt-2 text-3xl font-black md:text-5xl">{active.title}</h1>
-            <p className="mt-2 text-sm md:text-base">{active.subtitle}</p>
-            <button className="mt-4 bg-white px-5 py-2 text-xs font-black text-[#111111]">{active.cta}</button>
+          <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5 }}>
+            <p className="text-xs uppercase tracking-widest font-bold">Promo SHEIN</p>
+            <h1 className="mt-3 text-4xl font-black md:text-6xl leading-tight">{active.title}</h1>
+            <p className="mt-3 text-base md:text-lg font-medium">{active.subtitle}</p>
+            <button className="mt-6 bg-white px-6 py-3 text-sm font-black text-[#E8393A] hover:shadow-lg transition-all duration-300 rounded-lg">{active.cta}</button>
           </motion.div>
-          <div className="absolute bottom-3 left-6 flex gap-1">
+          <div className="absolute bottom-5 left-8 flex gap-2">
             {heroBanners.map((banner, dotIndex) => (
               <button
                 key={banner.id}
-                className={`h-1.5 w-6 ${dotIndex === index ? "bg-white" : "bg-white/40"}`}
+                className={`h-2 transition-all duration-300 ${dotIndex === index ? "w-8 bg-white" : "w-2 bg-white/50 hover:bg-white/70"}`}
                 onClick={() => setIndex(dotIndex)}
               />
             ))}
@@ -45,8 +45,8 @@ export function HeroBanner() {
         </motion.div>
       </AnimatePresence>
 
-      <div className="grid gap-3 md:grid-rows-2">
-        <div className="bg-gradient-to-br from-[#111111] to-[#353535] p-4 text-white">
+      <div className="grid gap-4 md:grid-rows-2">
+        <div className="bg-gradient-to-br from-[#111111] to-[#353535] p-6 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
           <p className="text-xs font-bold">Top ventes</p>
           <p className="mt-1 text-xl font-black">-70%</p>
           <button className="mt-3 border border-white px-3 py-1 text-xs">Shop now</button>

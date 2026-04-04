@@ -48,11 +48,11 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <article
-      className="group rounded-[4px] border border-[#e8e8e8] bg-white"
+      className="group rounded-xl border border-[#e8e8e8] bg-white hover:shadow-xl transition-all duration-300 overflow-hidden"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      <div className="relative aspect-[3/4] overflow-hidden">
+      <div className="relative aspect-[3/4] overflow-hidden bg-[#f5f5f5]">
         <Link href={`/product/${product.id}`} aria-label={product.name}>
           <Image
             src={imageToShow}
@@ -69,11 +69,11 @@ export function ProductCard({ product }: ProductCardProps) {
 
         <button
           onClick={() => toggleWishlist(product.id)}
-          className="absolute top-2 right-2 rounded-full bg-white p-1"
+          className="absolute top-3 right-3 rounded-full bg-white p-2 shadow-md hover:shadow-lg transition-all"
           aria-label="Ajouter à la wishlist"
         >
           <motion.div whileTap={{ scale: 0.88 }} animate={isWishlisted ? { scale: [1, 1.25, 1] } : { scale: 1 }}>
-            <Heart className={`h-4 w-4 ${isWishlisted ? "fill-[#E8393A] text-[#E8393A]" : "text-[#111111]"}`} />
+            <Heart className={`h-5 w-5 ${isWishlisted ? "fill-[#E8393A] text-[#E8393A]" : "text-[#111111]"}`} />
           </motion.div>
         </button>
 
