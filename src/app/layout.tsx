@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Syne, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { TopBar } from "@/components/layout/TopBar";
 import { Header } from "@/components/layout/Header";
@@ -7,9 +7,16 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ToastViewport } from "@/components/ui/ToastViewport";
 
-const inter = Inter({
+const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["700", "800"],
+  variable: "--font-syne",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-dm-sans",
 });
 
 export const metadata: Metadata = {
@@ -33,15 +40,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${inter.variable} h-full antialiased`}>
-      <body className="min-h-full bg-white text-[#111111]">
+    <html lang="fr" className={`${syne.variable} ${dmSans.variable} h-full antialiased`}>
+      <body className="min-h-full bg-[#FAFAF8] text-[#111111] font-dm-sans">
         <TopBar />
         <Header />
         <Navbar />
-        <main className="min-h-[60vh]">{children}</main>
+        <main className="min-h-[60vh] page-transition-fade">{children}</main>
         <Footer />
         <ToastViewport />
       </body>
     </html>
   );
 }
+

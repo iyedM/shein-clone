@@ -20,15 +20,21 @@ export function TopBar() {
   }
 
   return (
-    <div className="sticky top-0 z-[80] w-full bg-[#111111] text-white">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-3 py-2 text-[11px] md:px-4 md:text-xs">
-        <div className="flex flex-1 flex-wrap items-center gap-x-4 gap-y-1">
-          <span>Livraison gratuite dès 39 €</span>
-          <span className="hidden md:inline">Retours gratuits sous 30 jours</span>
-          <span className="hidden sm:inline">Télécharge l&apos;appli — coupon -15%</span>
+    <div className="sticky top-0 z-[100] w-full bg-[#111111] text-white">
+      <div className="mx-auto flex max-w-[1400px] items-center justify-between gap-3 px-6 py-2.5 text-[10px] font-bold uppercase tracking-widest">
+        <div className="flex flex-1 flex-wrap items-center gap-x-8 gap-y-1">
+          <span className="flex items-center gap-2 italic">
+            <span className="text-[#E8393A]">✓</span> Livraison offerte dès 39€
+          </span>
+          <span className="hidden md:flex items-center gap-2 italic">
+            <span className="text-[#E8393A]">✓</span> Retours sous 30 jours
+          </span>
+          <span className="hidden lg:flex items-center gap-2 italic uppercase bg-[#E8393A] px-2 py-0.5 rounded-sm">
+            -15% sur ta 1ère commande appli
+          </span>
         </div>
-        <button onClick={dismiss} className="p-1 text-white/80 hover:text-white md:hidden" aria-label="Fermer la bannière">
-          <X className="h-4 w-4" />
+        <button onClick={dismiss} className="p-1 text-white/40 hover:text-white transition-colors" aria-label="Fermer">
+          <X size={14} />
         </button>
       </div>
     </div>

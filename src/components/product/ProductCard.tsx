@@ -48,7 +48,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <article
-      className="group rounded-xl border border-[#e8e8e8] bg-white hover:shadow-xl transition-all duration-300 overflow-hidden"
+      className="group relative flex flex-col h-full bg-white rounded-2xl shadow-premium hover:shadow-hover hover:-translate-y-[6px] transition-all duration-300 overflow-hidden border-none"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
@@ -59,105 +59,110 @@ export function ProductCard({ product }: ProductCardProps) {
             alt={product.name}
             fill
             sizes="(max-width: 768px) 50vw, 25vw"
-            className="object-cover transition duration-300"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
           />
         </Link>
 
-        <span className="absolute top-2 left-2 rounded-[2px] bg-[#E8393A] px-1.5 py-0.5 text-[10px] font-bold text-white">
-          -{product.discountPercent}%
-        </span>
+        <div className="absolute top-3 left-3 flex flex-col gap-2">
+          <span className="rounded-[4px] bg-[#E8393A] px-2 py-1 text-[10px] font-bold text-white shadow-sm leading-none uppercase">
+            -{product.discountPercent}%
+          </span>
+
+          {product.badge ? (
+            <span className="rounded-[4px] bg-[#111111] px-2 py-1 text-[10px] font-bold text-white shadow-sm leading-none uppercase">
+              {product.badge === "FLASH" ? "Flash Sale" : product.badge}
+            </span>
+          ) : null}
+        </div>
 
         <button
           onClick={() => toggleWishlist(product.id)}
-          className="absolute top-3 right-3 rounded-full bg-white p-2 shadow-md hover:shadow-lg transition-all"
+          className="absolute top-3 right-3 h-9 w-9 flex items-center justify-center rounded-full bg-white/90 backdrop-blur-sm shadow-md hover:bg-white hover:shadow-lg transition-all"
           aria-label="Ajouter à la wishlist"
         >
-          <motion.div whileTap={{ scale: 0.88 }} animate={isWishlisted ? { scale: [1, 1.25, 1] } : { scale: 1 }}>
+          <motion.div whileTap={{ scale: 0.8 }} animate={isWishlisted ? { scale: [1, 1.2, 1] } : { scale: 1 }}>
             <Heart className={`h-5 w-5 ${isWishlisted ? "fill-[#E8393A] text-[#E8393A]" : "text-[#111111]"}`} />
           </motion.div>
         </button>
 
-        {product.badge ? (
-          <span className="absolute top-2 left-16 rounded-[2px] bg-[#FF6B00] px-1.5 py-0.5 text-[10px] font-bold text-white">
-            {product.badge === "FLASH" ? "Livraison rapide" : product.badge}
-          </span>
-        ) : null}
-
         <AnimatePresence>
           {hovered ? (
-            <motion.button
-              initial={{ opacity: 0, y: 8 }}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 8 }}
-              onClick={() => {
-                if (!selectedSize) {
-                  setShake(true);
-                  setTimeout(() => setShake(false), 350);
-                  return;
-                }
-
-                addItem({
-                  product,
-                  color: selectedColor || product.colors[0]?.name || "Unique",
-                  size: selectedSize,
-                });
-                pushToast("Ajouté au panier");
-              }}
-              className={`absolute right-2 bottom-2 left-2 bg-[#111111] py-2 text-xs font-bold text-white ${shake ? "animate-pulse" : ""}`}
+              exit={{ opacity: 0, y: 15 }}
+              className="absolute inset-x-3 bottom-3"
             >
-              Ajouter rapidement
-            </motion.button>
+              <button
+                onClick={() => {
+                  if (!selectedSize) {
+                    setShake(true);
+                    setTimeout(() => setShake(false), 350);
+                    return;
+                  }
+
+                  addItem({
+                    product,
+                    color: selectedColor || product.colors[0]?.name || "Unique",
+                    size: selectedSize,
+                  });
+                  pushToast("Ajouté au panier");
+                }}
+                className={`w-full glass py-3 text-[10px] font-bold text-[#111111] uppercase tracking-widest shadow-lg ${shake ? "ring-2 ring-[#E8393A]" : ""}`}
+              >
+                {selectedSize ? "Ajouter au panier" : "Choisir une taille"}
+              </button>
+            </motion.div>
           ) : null}
         </AnimatePresence>
       </div>
 
-      <div className="space-y-2 p-2">
-        <PriceTag price={product.price} originalPrice={product.originalPrice} />
+      <div className="flex flex-col flex-grow p-4 gap-2">
+        <div className="flex items-start justify-between gap-2">
+          <PriceTag price={product.price} originalPrice={product.originalPrice} />
+          <div className="flex items-center gap-1 mt-1">
+            <Star className="h-3 w-3 fill-[#111111] text-[#111111]" />
+            <span className="text-[10px] font-bold">{product.rating}</span>
+          </div>
+        </div>
 
         <Link href={`/product/${product.id}`}>
-          <h3 className="line-clamp-2 text-[11px] leading-4 text-[#888888]">{product.name}</h3>
+          <h3 className="line-clamp-1 text-xs font-medium text-[#111111] group-hover:text-[#E8393A] transition-colors">{product.name}</h3>
         </Link>
 
-        <div className="flex items-center gap-1 text-[11px] text-[#888888]">
-          {Array.from({ length: 5 }).map((_, index) => (
-            <Star key={index} className={`h-3 w-3 ${index < Math.round(product.rating) ? "fill-[#111111] text-[#111111]" : "text-[#d9d9d9]"}`} />
-          ))}
-          <span>({product.reviewCount})</span>
-        </div>
+        <p className="text-[10px] text-[#6b6b6b] line-clamp-1">Livré en 5 à 8 jours ouvrés</p>
 
-        <div className="flex items-center gap-1">
-          {product.colors.slice(0, 5).map((color) => (
-            <button
-              key={color.name}
-              aria-label={color.name}
-              onClick={() => {
-                setSelectedColor(color.name);
-                setSelectedImage(color.image || product.images[0]);
-              }}
-              className={`h-4 w-4 border ${selectedColor === color.name ? "border-[#111111]" : "border-[#e8e8e8]"}`}
-              style={{ backgroundColor: color.hex }}
-            />
-          ))}
-          {product.colors.length > 5 ? (
-            <span className="text-[10px] text-[#888888]">+{product.colors.length - 5} more</span>
-          ) : null}
-        </div>
+        <div className="mt-auto pt-2 flex items-center justify-between gap-2">
+          <div className="flex items-center gap-1.5">
+            {product.colors.slice(0, 4).map((color) => (
+              <button
+                key={color.name}
+                aria-label={color.name}
+                onClick={() => {
+                  setSelectedColor(color.name);
+                  setSelectedImage(color.image || product.images[0]);
+                }}
+                className={`h-3 w-3 rounded-full ring-offset-2 transition-all ${selectedColor === color.name ? "ring-1 ring-[#111111]" : "hover:ring-1 hover:ring-[#e8e8e8]"}`}
+                style={{ backgroundColor: color.hex }}
+              />
+            ))}
+            {product.colors.length > 4 ? (
+              <span className="text-[9px] font-bold text-[#6b6b6b]">+{product.colors.length - 4}</span>
+            ) : null}
+          </div>
 
-        <div className="flex flex-wrap gap-1">
-          {product.sizes.slice(0, 3).map((size) => (
-            <button
-              key={size}
-              onClick={() => setSelectedSize(size)}
-              className={`border px-1.5 py-0.5 text-[10px] ${selectedSize === size ? "border-[#111111] bg-[#111111] text-white" : "border-[#e8e8e8]"}`}
-            >
-              {size}
-            </button>
-          ))}
+          <div className="flex items-center gap-1">
+            {product.sizes.slice(0, 2).map((size) => (
+              <button
+                key={size}
+                onClick={() => setSelectedSize(size)}
+                className={`h-6 min-w-[24px] px-1 text-[9px] font-bold rounded-[4px] border transition-all ${selectedSize === size ? "bg-[#111111] text-white border-[#111111]" : "border-[#e8e8e8] text-[#6b6b6b] hover:border-[#111111]"}`}
+              >
+                {size}
+              </button>
+            ))}
+          </div>
         </div>
-
-        <p className="text-[10px] font-bold text-[#FF6B00]">Livraison gratuite sous 5-8j</p>
-        {product.isTrending ? <p className="text-[10px] text-[#888888]">{watching} personnes regardent</p> : null}
-        {stockLeft > 0 && stockLeft < 10 ? <p className="text-[10px] text-[#FF6B00]">Plus que {stockLeft} en stock</p> : null}
       </div>
     </article>
   );

@@ -7,16 +7,20 @@ export function FlashSaleSection() {
   const products = allProducts.filter((item) => item.badge === "FLASH").slice(0, 4);
 
   return (
-    <section className="mx-auto mt-8 max-w-7xl px-3 md:px-4">
-      <div className="flex items-center justify-between bg-gradient-to-r from-[#E8393A] to-[#ff6b6b] px-6 py-4 text-white rounded-t-xl shadow-md">
-        <div className="flex items-center gap-4">
-          <h2 className="text-lg font-black">⚡ VENTE FLASH</h2>
-          <CountdownTimer mode="hours4" />
+    <section className="mt-14 w-full bg-[#111111] py-14">
+      <div className="mx-auto max-w-[1400px] px-6">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-10 border-b border-white/10 pb-8">
+          <div className="flex flex-col md:flex-row items-center gap-6">
+            <h2 className="text-3xl font-bold tracking-tight text-white uppercase italic">⚡ Vente Flash</h2>
+            <div className="h-8 w-[1px] bg-white/20 hidden md:block" />
+            <CountdownTimer mode="hours4" className="text-xl font-mono text-white" />
+          </div>
+          <Link href="/products/prix-de-ouf" className="group flex items-center gap-2 text-sm font-bold text-white transition-all">
+            <span className="border-b border-white/0 group-hover:border-white transition-all uppercase tracking-widest">Voir toute la collection</span>
+            <span className="text-xl group-hover:translate-x-1 transition-transform">→</span>
+          </Link>
         </div>
-        <Link href="/products/prix-de-ouf" className="text-sm font-bold hover:underline transition-all">Voir tout →</Link>
-      </div>
-      <div className="rounded-b-xl overflow-hidden">
-        <ProductGrid products={products} />
+        <ProductGrid products={products} columns={4} />
       </div>
     </section>
   );

@@ -18,44 +18,53 @@ export function HeroBanner() {
   const active = heroBanners[index];
 
   return (
-    <section className="mx-auto mt-4 grid max-w-7xl gap-4 px-3 md:grid-cols-3 md:px-4">
+    <section className="relative w-full overflow-hidden bg-[#111111] h-[500px] md:h-[650px]">
       <AnimatePresence mode="wait">
         <motion.div
           key={active.id}
-          initial={{ opacity: 0.5 }}
+          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0.3 }}
-          className={`relative col-span-2 min-h-72 overflow-hidden bg-gradient-to-br ${active.gradient} p-8 text-white rounded-xl shadow-lg`}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8 }}
+          className="absolute inset-0"
         >
-          <motion.div initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5 }}>
-            <p className="text-xs uppercase tracking-widest font-bold">Promo SHEIN</p>
-            <h1 className="mt-3 text-4xl font-black md:text-6xl leading-tight">{active.title}</h1>
-            <p className="mt-3 text-base md:text-lg font-medium">{active.subtitle}</p>
-            <button className="mt-6 bg-white px-6 py-3 text-sm font-black text-[#E8393A] hover:shadow-lg transition-all duration-300 rounded-lg">{active.cta}</button>
-          </motion.div>
-          <div className="absolute bottom-5 left-8 flex gap-2">
-            {heroBanners.map((banner, dotIndex) => (
-              <button
-                key={banner.id}
-                className={`h-2 transition-all duration-300 ${dotIndex === index ? "w-8 bg-white" : "w-2 bg-white/50 hover:bg-white/70"}`}
-                onClick={() => setIndex(dotIndex)}
-              />
-            ))}
+          {/* Background Gradient & Overlay */}
+          <div className={`absolute inset-0 bg-gradient-to-br ${active.gradient} opacity-90`} />
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(232,57,58,0.15)_0%,transparent_60%)]" />
+
+          <div className="relative mx-auto flex h-full max-w-[1400px] items-center px-6 md:px-12">
+            <motion.div
+              initial={{ x: -30, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="max-w-2xl text-white"
+            >
+              <p className="text-sm font-bold uppercase tracking-[0.2em] text-white/80">Premium Collection</p>
+              <h1 className="hero-title mt-4 text-white">{active.title}</h1>
+              <p className="mt-6 text-lg md:text-xl font-medium text-white/90 max-w-lg leading-relaxed">{active.subtitle}</p>
+              <div className="mt-10 flex items-center gap-6">
+                <button className="btn-pulse bg-[#E8393A] px-8 py-4 text-sm font-bold text-white transition-all hover:bg-[#d12e2f] active:scale-95 rounded-none uppercase tracking-widest">
+                  {active.cta}
+                </button>
+                <button className="px-8 py-4 text-sm font-bold text-white border border-white/30 hover:bg-white hover:text-[#111111] transition-all rounded-none uppercase tracking-widest">
+                  View Lookbook
+                </button>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       </AnimatePresence>
 
-      <div className="grid gap-4 md:grid-rows-2">
-        <div className="bg-gradient-to-br from-[#111111] to-[#353535] p-6 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300">
-          <p className="text-xs font-bold">Top ventes</p>
-          <p className="mt-1 text-xl font-black">-70%</p>
-          <button className="mt-3 border border-white px-3 py-1 text-xs">Shop now</button>
-        </div>
-        <div className="bg-gradient-to-br from-[#ff6b00] to-[#e8393a] p-4 text-white">
-          <p className="text-xs font-bold">Nouveautés</p>
-          <p className="mt-1 text-xl font-black">Dès 4.99€</p>
-          <button className="mt-3 border border-white px-3 py-1 text-xs">Voir</button>
-        </div>
+      {/* Navigation Dots */}
+      <div className="absolute bottom-10 left-0 right-0 z-10 flex justify-center gap-3">
+        {heroBanners.map((banner, dotIndex) => (
+          <button
+            key={banner.id}
+            className={`h-1 transition-all duration-500 ease-out ${dotIndex === index ? "w-12 bg-[#E8393A]" : "w-6 bg-white/30 hover:bg-white/50"}`}
+            onClick={() => setIndex(dotIndex)}
+            aria-label={`Go to slide ${dotIndex + 1}`}
+          />
+        ))}
       </div>
     </section>
   );

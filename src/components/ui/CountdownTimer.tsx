@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 type CountdownTimerProps = {
   mode?: "hours4" | "midnight";
+  className?: string;
 };
 
 function format(ms: number) {
@@ -14,17 +15,17 @@ function format(ms: number) {
   return `${h}:${m}:${s}`;
 }
 
-export function CountdownTimer({ mode = "hours4" }: CountdownTimerProps) {
+export function CountdownTimer({ mode = "hours4", className }: CountdownTimerProps) {
   const [left, setLeft] = useState(mode === "hours4" ? 4 * 60 * 60 * 1000 : 0);
 
   useEffect(() => {
     let target =
       mode === "midnight"
         ? (() => {
-            const midnight = new Date();
-            midnight.setHours(24, 0, 0, 0);
-            return midnight.getTime();
-          })()
+          const midnight = new Date();
+          midnight.setHours(24, 0, 0, 0);
+          return midnight.getTime();
+        })()
         : new Date().getTime() + 4 * 60 * 60 * 1000;
 
     const tick = () => {
@@ -59,5 +60,5 @@ export function CountdownTimer({ mode = "hours4" }: CountdownTimerProps) {
     };
   }, [mode]);
 
-  return <span className="font-black tabular-nums text-white">{format(left)}</span>;
+  return <span className={`font-black tabular-nums transition-none ${className || "text-white"}`}>{format(left)}</span>;
 }

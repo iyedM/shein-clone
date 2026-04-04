@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { SlidersHorizontal } from "lucide-react";
+import { SlidersHorizontal, Star } from "lucide-react";
 import type { Product } from "@/types/product";
 import { ProductGrid } from "@/components/product/ProductGrid";
 import { filteredProducts, sortProducts } from "@/lib/catalog";
@@ -60,101 +60,141 @@ export function CategoryListingClient({ products }: CategoryListingClientProps) 
   };
 
   const sidebar = (
-    <div className="space-y-5 border border-[#e8e8e8] p-4">
+    <div className="space-y-8 bg-white p-8 rounded-2xl shadow-premium border-none">
       <div>
-        <p className="mb-2 text-xs font-black">Prix</p>
-        <input type="range" min={0} max={100} value={maxPrice} onChange={(event) => setMaxPrice(Number(event.target.value))} className="w-full" />
-        <p className="text-xs text-[#888888]">0€ - {maxPrice}€</p>
-      </div>
-
-      <div>
-        <p className="mb-2 text-xs font-black">Taille</p>
-        <div className="flex flex-wrap gap-2">
-          {availableSizes.map((size) => (
-            <button
-              key={size}
-              onClick={() => setSizes((prev) => (prev.includes(size) ? prev.filter((it) => it !== size) : [...prev, size]))}
-              className={`border px-2 py-1 text-xs ${sizes.includes(size) ? "border-[#111111] bg-[#111111] text-white" : "border-[#e8e8e8]"}`}
-            >
-              {size}
-            </button>
-          ))}
+        <p className="mb-4 text-xs font-bold uppercase tracking-widest text-[#111111]">Prix</p>
+        <input
+          type="range"
+          min={0}
+          max={100}
+          value={maxPrice}
+          onChange={(event) => setMaxPrice(Number(event.target.value))}
+          className="w-full accent-[#E8393A]"
+        />
+        <div className="mt-2 flex items-center justify-between text-xs font-medium text-[#6b6b6b]">
+          <span>0€</span>
+          <span>{maxPrice}€</span>
         </div>
       </div>
 
       <div>
-        <p className="mb-2 text-xs font-black">Couleur</p>
+        <p className="mb-4 text-xs font-bold uppercase tracking-widest text-[#111111]">Taille</p>
         <div className="flex flex-wrap gap-2">
-          {allColors.slice(0, 8).map(([name, hex]) => (
-            <button
-              key={name}
-              onClick={() => setColors((prev) => (prev.includes(name) ? prev.filter((it) => it !== name) : [...prev, name]))}
-              className={`h-6 w-6 border-2 ${colors.includes(name) ? "border-[#111111]" : "border-[#e8e8e8]"}`}
-              style={{ backgroundColor: hex }}
-              aria-label={name}
-            />
-          ))}
+          {availableSizes.map((size) => {
+            const isSelected = sizes.includes(size);
+            return (
+              <button
+                key={size}
+                onClick={() => setSizes((prev) => (prev.includes(size) ? prev.filter((it) => it !== size) : [...prev, size]))}
+                className={`min-w-[44px] h-11 border text-xs font-bold transition-all duration-300 ${isSelected
+                    ? "border-[#E8393A] bg-[#E8393A] text-white"
+                    : "border-[#e8e8e8] bg-white text-[#6b6b6b] hover:border-[#111111] hover:text-[#111111]"
+                  }`}
+              >
+                {size}
+              </button>
+            );
+          })}
         </div>
       </div>
 
       <div>
-        <p className="mb-2 text-xs font-black">Note</p>
-        <div className="space-y-1">
+        <p className="mb-4 text-xs font-bold uppercase tracking-widest text-[#111111]">Couleur</p>
+        <div className="grid grid-cols-5 gap-3">
+          {allColors.slice(0, 10).map(([name, hex]) => {
+            const isSelected = colors.includes(name);
+            return (
+              <button
+                key={name}
+                onClick={() => setColors((prev) => (prev.includes(name) ? prev.filter((it) => it !== name) : [...prev, name]))}
+                className={`h-7 w-7 rounded-full ring-offset-2 transition-all ${isSelected ? "ring-2 ring-[#E8393A]" : "hover:ring-1 hover:ring-[#e8e8e8]"
+                  }`}
+                style={{ backgroundColor: hex }}
+                aria-label={name}
+              />
+            );
+          })}
+        </div>
+      </div>
+
+      <div>
+        <p className="mb-4 text-xs font-bold uppercase tracking-widest text-[#111111]">Note</p>
+        <div className="space-y-3">
           {[4, 3, 2].map((item) => (
             <button
               key={item}
               onClick={() => setRating(item)}
-              className={`block text-xs ${rating === item ? "font-black text-[#111111]" : "text-[#888888]"}`}
+              className={`flex items-center gap-2 text-xs transition-colors ${rating === item ? "font-bold text-[#E8393A]" : "font-medium text-[#6b6b6b] hover:text-[#111111]"}`}
             >
-              {item}★ et plus
+              <div className="flex">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} size={12} className={i < item ? "fill-current" : "text-[#d9d9d9]"} />
+                ))}
+              </div>
+              & plus
             </button>
           ))}
         </div>
       </div>
 
-      <label className="flex items-center gap-2 text-xs">
-        <input type="checkbox" checked={fastDelivery} onChange={(event) => setFastDelivery(event.target.checked)} />
-        Livraison rapide
-      </label>
-
-      <button onClick={clearAll} className="text-xs font-bold underline">Clear all filters</button>
+      <div className="pt-6 border-t border-[#f2f2f2]">
+        <button
+          onClick={clearAll}
+          className="w-full py-4 text-xs font-bold uppercase tracking-widest text-[#111111] bg-[#f8f8f8] hover:bg-[#111111] hover:text-white transition-all rounded-xl"
+        >
+          Réinitialiser tout
+        </button>
+      </div>
     </div>
   );
 
   return (
-    <div className="mx-auto grid max-w-7xl gap-4 px-3 py-4 md:grid-cols-[260px_1fr] md:px-4">
-      <aside className="hidden md:block">{sidebar}</aside>
+    <div className="mx-auto grid max-w-[1400px] gap-10 px-6 py-14 md:grid-cols-[280px_1fr]">
+      <aside className="hidden md:block">
+        <div className="sticky top-44">{sidebar}</div>
+      </aside>
 
-      <div>
-        <div className="sticky top-[98px] z-20 mb-3 flex items-center justify-between border border-[#e8e8e8] bg-white px-3 py-2 text-xs">
-          <p>{result.length} résultats</p>
-          <div className="flex items-center gap-2">
+      <div className="space-y-8">
+        <div className="sticky top-[112px] md:top-28 z-20 flex items-center justify-between glass px-8 py-5 rounded-2xl shadow-premium">
+          <p className="text-xs font-bold uppercase tracking-[0.1em] text-[#111111]">{result.length} Produits</p>
+          <div className="flex items-center gap-6">
             <Sheet>
               <SheetTrigger asChild>
-                <button className="inline-flex items-center gap-1 border border-[#e8e8e8] px-2 py-1 md:hidden">
-                  <SlidersHorizontal className="h-3 w-3" /> Filtres
+                <button className="inline-flex items-center gap-2 border border-[#e8e8e8] px-5 py-2.5 text-[10px] font-bold uppercase md:hidden tracking-widest hover:border-[#111111] transition-all">
+                  <SlidersHorizontal className="h-4 w-4" /> Filtres
                 </button>
               </SheetTrigger>
-              <SheetContent side="bottom" className="max-h-[85vh] overflow-y-auto">
-                <SheetTitle>Filtres</SheetTitle>
-                {sidebar}
+              <SheetContent side="right" className="w-full max-w-[340px] overflow-y-auto pt-16">
+                <SheetTitle className="text-xl font-bold uppercase tracking-widest mb-10 px-4">Filtrer par</SheetTitle>
+                <div className="px-4">{sidebar}</div>
               </SheetContent>
             </Sheet>
 
-            <select value={sortBy} onChange={(event) => setSortBy(event.target.value)} className="border border-[#e8e8e8] px-2 py-1 text-xs">
-              {sorts.map((sort) => (
-                <option key={sort}>{sort}</option>
-              ))}
-            </select>
+            <div className="flex items-center gap-3">
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[#6b6b6b] hidden sm:block">Trier par:</span>
+              <select
+                value={sortBy}
+                onChange={(event) => setSortBy(event.target.value)}
+                className="bg-transparent text-[10px] font-bold uppercase tracking-widest cursor-pointer focus:outline-none appearance-none pr-4"
+              >
+                {sorts.map((sort) => (
+                  <option key={sort} className="bg-white text-black">{sort}</option>
+                ))}
+              </select>
+            </div>
           </div>
         </div>
 
         <ProductGrid products={shown} />
 
         {shown.length < result.length ? (
-          <div className="mt-4 text-center">
-            <button onClick={() => setLimit((prev) => prev + 8)} className="border border-[#111111] px-4 py-2 text-xs font-bold">
-              Charger plus
+          <div className="mt-14 text-center">
+            <button
+              onClick={() => setLimit((prev) => prev + 12)}
+              className="group relative inline-flex items-center gap-4 bg-[#111111] px-14 py-5 text-xs font-bold text-white transition-all hover:bg-white hover:text-[#111111] border border-[#111111] uppercase tracking-widest shadow-premium hover:shadow-hover"
+            >
+              Plus d'articles
+              <span className="text-xl group-hover:translate-x-1 transition-transform">→</span>
             </button>
           </div>
         ) : null}

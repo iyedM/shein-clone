@@ -36,13 +36,17 @@ export function ProductFeed() {
   const shown = products.slice(0, limit);
 
   return (
-    <section className="mx-auto mt-6 max-w-7xl px-3 md:px-4">
-      <h2 className="mb-3 text-base font-black">JUSTE POUR TOI</h2>
+    <section className="mx-auto mt-14 max-w-[1400px] px-6 py-14">
+      <h2 className="mb-10 text-3xl font-bold tracking-tight text-[#111111] uppercase tracking-[0.1em]">Juste pour toi</h2>
       <ProductGrid products={shown} />
       {shown.length < products.length ? (
-        <div className="mt-5 text-center">
-          <button onClick={() => setLimit((prev) => prev + 8)} className="border border-[#111111] px-5 py-2 text-xs font-bold">
-            Load more
+        <div className="mt-14 text-center">
+          <button
+            onClick={() => setLimit((prev) => prev + 8)}
+            className="group relative inline-flex items-center gap-4 bg-[#111111] px-10 py-4 text-xs font-bold text-white transition-all hover:bg-white hover:text-[#111111] border border-[#111111] uppercase tracking-widest"
+          >
+            Voir plus de articles
+            <span className="text-xl group-hover:translate-x-1 transition-transform">→</span>
           </button>
         </div>
       ) : null}

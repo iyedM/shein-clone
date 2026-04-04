@@ -34,8 +34,8 @@ export function Header() {
   );
 
   return (
-    <header className={`sticky z-[70] w-full transition-all ${sticky ? "top-0 bg-white shadow-lg" : "top-0 bg-gradient-to-b from-white to-white/98 shadow-md"}`}>
-      <div className="mx-auto flex h-16 max-w-7xl items-center gap-3 px-3 md:px-4">
+    <header className={`sticky top-0 z-[70] w-full transition-all glass ${sticky ? "shadow-sm" : "border-b-transparent"}`}>
+      <div className="mx-auto flex h-16 max-w-[1400px] items-center gap-3 px-3 md:px-6">
         <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
           <SheetTrigger asChild>
             <button className="md:hidden" aria-label="Menu">
@@ -44,7 +44,7 @@ export function Header() {
           </SheetTrigger>
           <SheetContent side="left" className="w-full max-w-full bg-white p-0" showCloseButton>
             <div className="p-4">
-              <SheetTitle className="text-xl font-black text-[#E8393A]">SHEIN</SheetTitle>
+              <SheetTitle className="text-xl font-bold text-[#E8393A]">SHEIN</SheetTitle>
             </div>
             <div className="grid max-h-[80vh] grid-cols-1 overflow-y-auto border-t border-[#e8e8e8]">
               {allCategories.map((category) => (
@@ -61,9 +61,9 @@ export function Header() {
           </SheetContent>
         </Sheet>
 
-        <Link href="/" className="text-2xl leading-none font-black text-[#E8393A]">SHEIN</Link>
+        <Link href="/" className="text-2xl leading-none font-bold tracking-tight text-[#E8393A]">SHEIN</Link>
 
-        <div className="hidden flex-1 md:block">
+        <div className="hidden flex-1 md:block lg:max-w-xl mx-auto">
           <SearchBar
             placeholder={searchPlaceholder}
             onChangeDebounced={(value) => {
@@ -75,7 +75,7 @@ export function Header() {
           />
         </div>
 
-        <div className="ml-auto flex items-center gap-3">
+        <div className="ml-auto flex items-center gap-4">
           <button aria-label="Recherche" className="md:hidden">
             <Search className="h-5 w-5" />
           </button>
@@ -85,7 +85,7 @@ export function Header() {
           <Link href="/wishlist" aria-label="Wishlist" className="relative">
             <Heart className="h-5 w-5" />
             {wishlistCount > 0 ? (
-              <span className="absolute -top-2 -right-2 min-w-4 rounded-[2px] bg-[#111111] px-1 text-[10px] leading-4 text-white">
+              <span className="absolute -top-1.5 -right-1.5 min-w-4 h-4 flex items-center justify-center rounded-full bg-[#111111] px-1 text-[9px] font-bold text-white">
                 {wishlistCount}
               </span>
             ) : null}
@@ -97,9 +97,9 @@ export function Header() {
                 <motion.span
                   key={totalItems}
                   initial={{ scale: 0.7 }}
-                  animate={{ scale: [1, 1.24, 1] }}
+                  animate={{ scale: [1, 1.1, 1] }}
                   exit={{ scale: 0.5, opacity: 0 }}
-                  className="absolute -top-2 -right-2 min-w-4 rounded-[2px] bg-[#E8393A] px-1 text-[10px] leading-4 text-white"
+                  className="absolute -top-1.5 -right-1.5 min-w-4 h-4 flex items-center justify-center rounded-full bg-[#E8393A] px-1 text-[9px] font-bold text-white"
                 >
                   {totalItems}
                 </motion.span>
