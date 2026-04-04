@@ -1,0 +1,23 @@
+[
+  {
+    "id": "hero-1",
+    "title": "JUSQU'À -80%",
+    "subtitle": "Nouveautés printemps · livraison offerte dès 39€",
+    "cta": "Acheter",
+    "gradient": "from-[#e8393a] via-[#ff6b00] to-[#111111]"
+  },
+  {
+    "id": "hero-2",
+    "title": "SOLDES FLASH",
+    "subtitle": "Prix mini, style maxi · 4h seulement",
+    "cta": "Voir les offres",
+    "gradient": "from-[#111111] via-[#2b2b2b] to-[#e8393a]"
+  },
+  {
+    "id": "hero-3",
+    "title": "LOOKS D'ÉTÉ",
+    "subtitle": "Maillots, robes, sandales · pièces iconiques",
+    "cta": "Découvrir",
+    "gradient": "from-[#f97316] via-[#fb923c] to-[#111111]"
+  }
+]

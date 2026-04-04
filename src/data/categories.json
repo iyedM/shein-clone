@@ -1,0 +1,19 @@
+[
+  { "slug": "prix-de-ouf", "label": "Prix de ouf", "emoji": "🔥" },
+  { "slug": "nouveautes", "label": "Nouveautés", "emoji": "✨" },
+  { "slug": "livraison-rapide", "label": "Livraison Rapide", "emoji": "⚡" },
+  { "slug": "vetements-pour-femmes", "label": "Vêtements pour femmes", "emoji": "👗" },
+  { "slug": "tenues-de-plage", "label": "Tenues de plage", "emoji": "🏖️" },
+  { "slug": "grandes-tailles", "label": "Grandes tailles", "emoji": "💃" },
+  { "slug": "vetements-pour-hommes", "label": "Vêtements pour hommes", "emoji": "👔" },
+  { "slug": "sous-vetements-et-vetements-de-nuit", "label": "Sous-vêtements et vêtements de nuit", "emoji": "🩲" },
+  { "slug": "sports-exterieur", "label": "Sports & extérieur", "emoji": "🏃" },
+  { "slug": "enfants", "label": "Enfants", "emoji": "🧒" },
+  { "slug": "bebe-maternite", "label": "Bébé & maternité", "emoji": "🍼" },
+  { "slug": "beaute-sante", "label": "Beauté & santé", "emoji": "💄" },
+  { "slug": "chaussures", "label": "Chaussures", "emoji": "👠" },
+  { "slug": "bijoux-accessoires", "label": "Bijoux et accessoires", "emoji": "💍" },
+  { "slug": "maison-habitat", "label": "Maison et Habitat", "emoji": "🏠" },
+  { "slug": "electronique", "label": "Électronique", "emoji": "🎧" },
+  { "slug": "animaux-compagnie", "label": "Animaux de compagnie", "emoji": "🐾" }
+]
