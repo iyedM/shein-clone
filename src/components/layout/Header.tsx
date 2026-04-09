@@ -33,7 +33,7 @@ export function Header() {
   }, []);
 
   const searchPlaceholder = useMemo(
-    () => (pathname.startsWith("/search") ? "Rechercher sur SHEIN..." : "Robe d'été, bikini, sandales..."),
+    () => (pathname.startsWith("/search") ? "Rechercher sur SHINE..." : "Robe d'été, bikini, sandales..."),
     [pathname]
   );
 
@@ -54,7 +54,7 @@ export function Header() {
           </SheetTrigger>
           <SheetContent side="left" className="w-[300px] bg-white p-0 border-r" showCloseButton>
             <div className="p-8 border-b">
-              <SheetTitle className="text-3xl font-black text-[#E8393A] italic tracking-tighter">SHEIN</SheetTitle>
+              <SheetTitle className="text-3xl font-black text-[#E8393A] italic tracking-tighter">SHINE</SheetTitle>
             </div>
             <div className="py-2 overflow-y-auto">
               {allCategories.map((category) => (
@@ -74,7 +74,7 @@ export function Header() {
 
         {/* Logo */}
         <Link href="/" className="text-4xl leading-none font-black tracking-tighter text-[#111111] hover:text-[#E8393A] transition-colors italic">
-          SHEIN<span className="text-[#E8393A]">.</span>
+          SHINE<span className="text-[#E8393A]">.</span>
         </Link>
 
         {/* Desktop Navigation */}

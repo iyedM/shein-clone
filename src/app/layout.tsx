@@ -12,8 +12,8 @@ import { SmartBar } from "@/components/layout/SmartBar";
 export const metadata: Metadata = {
   metadataBase: new URL("https://fr.shein-clone.local"),
   title: {
-    default: "SHEIN AI | Hyper-Fluid Commerce",
-    template: "%s | SHEIN AI",
+    default: "SHINE AI | Hyper-Fluid Commerce",
+    template: "%s | SHINE AI",
   },
   description: "Mode 2026 : l'expérience shopping la plus fluide au monde.",
 };

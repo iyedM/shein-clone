@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!product) return { title: "Produit introuvable" };
 
   return {
-    title: `${product.name} | SHEIN AI 2026`,
+    title: `${product.name} | SHINE AI 2026`,
     description: product.description,
     openGraph: {
       title: product.name,

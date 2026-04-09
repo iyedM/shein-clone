@@ -12,9 +12,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = allCategories.find((item) => item.slug === category)?.label ?? "Catégorie";
   return {
     title,
-    description: `Explore la catégorie ${title} sur SHEIN clone.`,
+    description: `Explore la catégorie ${title} sur SHINE clone.`,
     openGraph: {
-      title: `${title} · SHEIN Clone FR`,
+      title: `${title} · SHINE Clone FR`,
       description: `Nouveautés et meilleures ventes ${title}.`,
     },
   };

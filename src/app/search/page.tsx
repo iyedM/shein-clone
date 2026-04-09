@@ -3,7 +3,7 @@ import { SearchResultsClient } from "@/components/product/SearchResultsClient";
 
 export const metadata: Metadata = {
   title: "Recherche",
-  description: "Recherche produits SHEIN clone.",
+  description: "Recherche produits SHINE clone.",
 };
 
 type Props = {

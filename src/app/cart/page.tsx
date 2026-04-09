@@ -3,9 +3,9 @@ import { CartClient } from "@/components/cart/CartClient";
 
 export const metadata: Metadata = {
   title: "Panier",
-  description: "Consulte ton panier SHEIN clone et valide ta commande.",
+  description: "Consulte ton panier SHINE clone et valide ta commande.",
   openGraph: {
-    title: "Panier · SHEIN Clone FR",
+    title: "Panier · SHINE Clone FR",
   },
 };
 

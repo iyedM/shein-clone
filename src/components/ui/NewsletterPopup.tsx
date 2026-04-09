@@ -119,7 +119,7 @@ export function NewsletterPopup() {
                                 <h4 className="text-xl font-black mb-2 uppercase">BIENVENUE !</h4>
                                 <p className="text-sm text-gray-500 mb-8">Ton code promo de <span className="font-bold text-[#111111]">-15%</span> arrive dans quelques instants.</p>
                                 <div className="p-4 bg-gray-50 border-2 border-dashed border-gray-200 text-xl font-mono font-bold tracking-widest">
-                                    SHEIN2026
+                                    SHINE2026
                                 </div>
                             </motion.div>
                         )}

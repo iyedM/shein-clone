@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 const reviews = [
   { id: 1, user: "Marie L.", stars: 5, text: "Très belle qualité, taille parfaitement. Le tombé est incroyable, je ne m'attendais pas à une telle finesse dans les détails.", size: "M", date: "il y a 2 jours", location: "Paris, FR" },
   { id: 2, user: "Sarah K.", stars: 4, text: "La couleur est sublime, livraison ultra rapide. Un peu plus large que prévu mais ça donne un style oversize sympa.", size: "S", date: "il y a 5 jours", location: "Lyon, FR" },
-  { id: 3, user: "Alicia V.", stars: 5, text: "Encore mieux en vrai, je recommande vivement. Les finitions SHEIN LUXE 2026 sont vraiment d'un autre niveau.", size: "L", date: "il y a 1 semaine", location: "Bordeaux, FR" },
+  { id: 3, user: "Alicia V.", stars: 5, text: "Encore mieux en vrai, je recommande vivement. Les finitions SHINE LUXE 2026 sont vraiment d'un autre niveau.", size: "L", date: "il y a 1 semaine", location: "Bordeaux, FR" },
 ];
 
 export function ReviewSection() {

@@ -29,7 +29,7 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12 lg:gap-8">
           {/* Brand */}
           <div className="col-span-2 lg:col-span-1">
-            <h2 className="text-4xl font-black tracking-tighter text-white mb-8 italic uppercase font-heading">SHEIN<span className="text-[#E8393A]">.</span></h2>
+            <h2 className="text-4xl font-black tracking-tighter text-white mb-8 italic uppercase font-heading">SHINE<span className="text-[#E8393A]">.</span></h2>
             <div className="flex gap-4">
               {[Camera, Mail, Globe, Smartphone].map((Icon, idx) => (
                 <a key={idx} href="#" className="w-10 h-10 flex items-center justify-center border border-white/10 rounded-full hover:bg-white hover:text-[#111111] hover:border-white transition-all text-white/40">
@@ -55,7 +55,7 @@ export function Footer() {
           <div>
             <h3 className="mb-8 text-[11px] font-black uppercase tracking-[0.2em] text-[#E8393A]">Entreprise</h3>
             <ul className="space-y-4 text-xs font-bold text-white/40 uppercase tracking-widest">
-              {["À propos de SHEIN", "Responsabilité sociale", "Vendre sur SHEIN", "Espace presse", "Carrières"].map((link) => (
+              {["À propos de SHINE", "Responsabilité sociale", "Vendre sur SHINE", "Espace presse", "Carrières"].map((link) => (
                 <li key={link} className="hover:text-white cursor-pointer transition-colors flex items-center gap-2 group">
                   <span className="w-0 h-[1px] bg-[#E8393A] transition-all group-hover:w-3" />
                   {link}
@@ -119,7 +119,7 @@ export function Footer() {
       </div>
 
       <div className="bg-[#0a0a0a] px-6 py-8 text-center text-[9px] font-black uppercase tracking-[0.4em] text-white/5 border-t border-white/5">
-        © 2026 SHEIN CLONE PORTAL — ALL RIGHTS RESERVED
+        © 2026 SHINE CLONE PORTAL — ALL RIGHTS RESERVED
       </div>
     </footer>
   );

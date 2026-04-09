@@ -3,7 +3,7 @@ import { WishlistClient } from "@/components/product/WishlistClient";
 
 export const metadata: Metadata = {
   title: "Wishlist",
-  description: "Tes favoris SHEIN clone.",
+  description: "Tes favoris SHINE clone.",
 };
 
 export default function WishlistPage() {

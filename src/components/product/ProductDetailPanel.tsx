@@ -52,7 +52,7 @@ export function ProductDetailPanel({ product }: ProductDetailPanelProps) {
       {/* Product Title & Brand */}
       <div>
         <div className="flex items-center gap-2 mb-4">
-          <span className="px-3 py-1 bg-black text-white text-[9px] font-black uppercase tracking-widest rounded-full">SHEIN LUXE</span>
+          <span className="px-3 py-1 bg-black text-white text-[9px] font-black uppercase tracking-widest rounded-full">SHINE LUXE</span>
           <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Saison 2026</span>
         </div>
         <h1 className="text-4xl md:text-5xl font-black font-heading tracking-tighter uppercase leading-tight italic">
@@ -98,7 +98,7 @@ export function ProductDetailPanel({ product }: ProductDetailPanelProps) {
                 <DialogHeader>
                   <DialogTitle className="text-2xl font-black font-heading uppercase">Guide des Tailles</DialogTitle>
                   <DialogDescription>
-                    Mesurez vos mensurations pour trouver la coupe parfaite SHEIN 2026.
+                    Mesurez vos mensurations pour trouver la coupe parfaite SHINE 2026.
                   </DialogDescription>
                 </DialogHeader>
                 <div className="grid grid-cols-2 gap-4 mt-6">

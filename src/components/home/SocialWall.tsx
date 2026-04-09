@@ -19,7 +19,7 @@ export function SocialWall() {
             <div className="mx-auto max-w-[1400px] px-6 mb-20 text-center">
                 <div className="flex items-center justify-center gap-4 mb-6">
                     <div className="w-12 h-[1px] bg-white/20" />
-                    <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#E8393A]">VOUS CHEZ SHEIN</span>
+                    <span className="text-[10px] font-black uppercase tracking-[0.5em] text-[#E8393A]">VOUS CHEZ SHINE</span>
                     <div className="w-12 h-[1px] bg-white/20" />
                 </div>
                 <h2 className="text-4xl md:text-7xl font-black italic text-white font-heading uppercase">VOTRE STYLE, <span className="text-[#E8393A]">NOTRE HISTOIRE</span></h2>
