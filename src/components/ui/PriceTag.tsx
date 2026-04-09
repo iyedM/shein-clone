@@ -1,25 +1,28 @@
+import { cn } from "@/lib/utils";
+
 type PriceTagProps = {
   price: number;
   originalPrice?: number;
   discountPercent?: number;
-  large?: boolean;
+  className?: string;
 };
 
-export function PriceTag({ price, originalPrice, discountPercent, large }: PriceTagProps) {
+export function PriceTag({ price, originalPrice, discountPercent, className }: PriceTagProps) {
   return (
-    <div className="flex items-center gap-2">
-      <span className={large ? "text-3xl font-bold tracking-tighter text-[#E8393A]" : "text-base font-bold text-[#E8393A]"}>
+    <div className={cn("flex items-baseline gap-3", className)}>
+      <span className="font-black text-[#111111] font-heading tracking-tighter italic">
         {price.toFixed(2)}€
       </span>
-      {originalPrice ? (
-        <span className="text-xs text-[#6b6b6b] line-through font-medium">{originalPrice.toFixed(2)}€</span>
+      {originalPrice && originalPrice > price ? (
+        <span className="text-[0.6em] text-gray-400 line-through font-bold opacity-60">
+          {originalPrice.toFixed(2)}€
+        </span>
       ) : null}
       {discountPercent ? (
-        <span className="rounded-[4px] bg-[#E8393A] px-2 py-0.5 text-[10px] font-bold text-white uppercase shadow-sm">
+        <span className="bg-[#E8393A]/5 text-[#E8393A] px-2 py-0.5 rounded-full text-[0.4em] font-black uppercase tracking-widest border border-[#E8393A]/10">
           -{discountPercent}%
         </span>
       ) : null}
     </div>
   );
 }
-

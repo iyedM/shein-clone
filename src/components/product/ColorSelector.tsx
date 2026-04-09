@@ -8,17 +8,25 @@ type ColorSelectorProps = {
 
 export function ColorSelector({ colors, value, onChange }: ColorSelectorProps) {
   return (
-    <div className="space-y-2">
-      <span className="text-xs font-bold">Couleur: {value}</span>
-      <div className="flex gap-2">
+    <div className="space-y-4">
+      <h3 className="text-xs font-black uppercase tracking-widest text-gray-400 font-satoshi">Couleur: <span className="text-[#111111]">{value}</span></h3>
+      <div className="flex gap-4">
         {colors.map((color) => (
           <button
             key={color.name}
             onClick={() => onChange(color)}
             aria-label={color.name}
-            className={`h-7 w-7 border-2 ${value === color.name ? "border-[#111111]" : "border-[#e8e8e8]"}`}
-            style={{ backgroundColor: color.hex }}
-          />
+            className={`group relative h-10 w-10 flex items-center justify-center rounded-full transition-all duration-300 ${value === color.name ? "ring-2 ring-black ring-offset-4 scale-110" : "hover:scale-105"
+              }`}
+          >
+            <div
+              className="h-full w-full rounded-full border border-gray-100 shadow-sm"
+              style={{ backgroundColor: color.hex }}
+            />
+            {value === color.name && (
+              <div className="absolute inset-0 rounded-full bg-white/20 animate-pulse" />
+            )}
+          </button>
         ))}
       </div>
     </div>

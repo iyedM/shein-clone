@@ -1,3 +1,5 @@
+"use client";
+
 type SizeSelectorProps = {
   sizes: string[];
   value: string;
@@ -6,24 +8,19 @@ type SizeSelectorProps = {
 
 export function SizeSelector({ sizes, value, onChange }: SizeSelectorProps) {
   return (
-    <div className="space-y-2">
-      <div className="flex items-center justify-between">
-        <span className="text-xs font-bold">Taille</span>
-        <button className="text-xs text-[#888888] underline">Guide des tailles</button>
-      </div>
-      <div className="flex flex-wrap gap-2">
-        {sizes.map((size) => (
-          <button
-            key={size}
-            onClick={() => onChange(size)}
-            className={`min-w-10 border px-3 py-2 text-xs font-bold ${
-              value === size ? "border-[#111111] bg-[#111111] text-white" : "border-[#e8e8e8] bg-white text-[#111111]"
+    <div className="flex flex-wrap gap-3">
+      {sizes.map((size) => (
+        <button
+          key={size}
+          onClick={() => onChange(size)}
+          className={`min-w-[70px] h-14 rounded-2xl text-xs font-black uppercase tracking-widest transition-all duration-500 border ${value === size
+              ? "bg-[#111111] text-white border-black shadow-premium scale-105"
+              : "bg-white text-gray-400 border-gray-100 hover:border-gray-300 hover:text-black"
             }`}
-          >
-            {size}
-          </button>
-        ))}
-      </div>
+        >
+          {size}
+        </button>
+      ))}
     </div>
   );
 }
