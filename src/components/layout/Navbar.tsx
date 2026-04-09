@@ -3,34 +3,37 @@
 import Link from "next/link";
 import { allCategories } from "@/lib/catalog";
 import { usePathname } from "next/navigation";
+import { motion } from "framer-motion";
 
 export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="sticky top-[98px] z-[60] glass md:top-16">
-      <div className="mx-auto flex max-w-[1400px] items-center gap-6 overflow-x-auto px-4 md:px-6">
+    <nav className="sticky top-[72px] md:top-[88px] z-[60] bg-[#FAFAF8] border-b border-gray-100 overflow-hidden">
+      <div className="mx-auto flex max-w-[1500px] items-center gap-10 overflow-x-auto px-6 md:px-10 no-scrollbar">
         {allCategories.map((category, index) => {
           const active = pathname.includes(`/products/${category.slug}`) || (pathname === "/" && index === 0);
+          const isSpecial = category.label === "Prix de ouf" || category.label === "Nouveautés";
 
           return (
             <div key={category.slug} className="group relative">
               <Link
                 href={`/products/${category.slug}`}
-                className={`relative block shrink-0 py-4 text-xs font-bold uppercase tracking-wider whitespace-nowrap transition-all duration-300 ${category.label === "Prix de ouf"
+                className={`relative block shrink-0 py-5 text-[10px] font-black uppercase tracking-[0.2em] whitespace-nowrap transition-all duration-300 ${isSpecial
                     ? "text-[#E8393A]"
                     : active
-                      ? "text-[#E8393A]"
-                      : "text-[#111111]/70 hover:text-[#E8393A]"
+                      ? "text-[#111111]"
+                      : "text-[#111111]/40 hover:text-[#111111]"
                   }`}
               >
                 {category.label}
-                {active ? <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#E8393A]" /> : null}
+                {active && (
+                  <motion.span
+                    layoutId="nav-active"
+                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#111111]"
+                  />
+                )}
               </Link>
-              <div className="pointer-events-none absolute left-0 z-40 mt-1 hidden min-w-56 border border-[#e8e8e8] bg-white p-4 text-xs opacity-0 shadow-premium rounded-xl transition md:group-hover:block md:group-hover:opacity-100">
-                <p className="font-bold text-[#111111]">{category.label}</p>
-                <p className="mt-1 text-[#6b6b6b]">Découvre les meilleures offres de cette catégorie.</p>
-              </div>
             </div>
           );
         })}
